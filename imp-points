@@ -1,0 +1,506 @@
+Imp point : Static methods cannot be overridden since they are bonded at compile time and method overriding relies on dynamic binding at runtime.In the case of a child class, a static method with a method signature exactly like that of the parent class can exist without even throwing any compilation error.
+
+Imp point : The top level class cannot be static in java, to create a static class we must create a nested class and then make it static.
+
+Imp point : Homogeneous means the same type. Heterogeneous means diverse types.
+
+Imp point : (Combination of modifiers: abstract and final) - abstract classes are incomplete classes that need to be inherited for making their concrete classes. And on the other hand, the final keywords in class are used for avoiding inheritance. So these combinations are not allowed in java
+
+Imp point : A constructor cannot be marked as final because whenever a class is inherited, the constructors are not inherited. Hence, marking it final doesn't make sense. Java throws compilation error saying - modifier final not allowed here.
+
+Imp point : Final variable instantiations are possible inside a constructor and the scope of this applies to the whole class and its objects. A final variable if initialised inside a method ensures that the variable cant be changed only within the scope of that method.
+
+Imp point : super() must be the first statement in the block.(Scenario:When calling the parent class constructor). this() must also be the first statement in the block that is why we cannot use this() and super() keywords in the same block.
+
+[TO:DO]Imp point : Java always works as a “pass by value”. There is nothing called a “pass by reference” in Java. 
+https://www.geeksforgeeks.org/g-fact-31-java-is-strictly-pass-by-value/
+
+[TO:DO]Imp point :Doesn't matter how many main methods we overload it will only execute one main method based on its declaration in JVM.
+
+[TO:DO]Imp point: The functionality of Class.getInstance() is It creates object if the class does not have constructor defined.
+
+Imp point : We cannot change the order of try catch and finnally we can just use different combinations such as just the try, try with catch, try finally, try catch and finally blocks.
+
+Imp point : Finally block will be executed even if either try or catch blocks are returning the control.
+
+Anonymous Inner Class - It is a class which doesnt have a name. You just have to create an object and just before the semicolon provide the implementation.  Same way we can use Anonymous class with interface which allows us to create the object of the interface. Note, you cannot reuse this class.
+
+Shallow copy - The shallow copy only creates a new reference and points to the same object. if we change the values in shallow copy then they affect the other reference as well.
+Deep Copy - In a deep copy, we create a new object and copy the old object value to the new object. if we change the values in deep copy then they do not affect the other reference.The clone() will do this deep copy internally and return a new object.
+
+A String is made immutable because of Multithreading ie. The safety of threads regarding the String objects is an important aspect in Java. No external synchronization is required if the String objects are immutable.
+
+differentiate between a String, StringBuffer, and a StringBuilder - 
+Storage area: In string, the String pool serves as the storage area. For StringBuilder and StringBuffer, heap memory is the storage area.
+Mutability: A String is immutable, whereas both the StringBuilder and StringBuffer are mutable.
+Thread-safe: In the case of a threaded environment, StringBuilder and StringBuffer are used whereas a String is not used. However, StringBuilder is suitable for an environment with a single thread, and a StringBuffer is suitable for multiple threads.
+
+StringBuffer is mutable and dynamic in nature whereas String is immutable. Every updation / modification of String creates a new String thereby overloading the string pool with unnecessary objects. Hence, in the cases of a lot of updates, it is always preferred to use StringBuffer.
+
+differences between interfaces and abstract classes.
+Availability of methods: Only abstract methods are available in interfaces, whereas non-abstract methods can be present along with abstract methods in abstract classes.
+Variable types: Static and final variables can only be declared in the case of interfaces (Note : All variables defined in interfaces are implicitly final and static.), whereas abstract classes can also have non-static and non-final variables. 
+Inheritance: Multiple inheritances are facilitated by interfaces, whereas abstract classes do not promote multiple inheritances.
+
+Comparator - Consider the example where we have an ArrayList of employees like( EId, Ename, Salary), etc. Now if we want to sort this list of employees based on the names of employees. Then that is not possible to sort using the Collections.sort() method. We need to provide something to the sort() function depending on what values we have to perform sorting. Then in that case a comparator is used.Comparator is the interface in java that contains the compare method. And by overriding the compare method, we can define that on what basis we need to compare the values.
+
+Comparator & Comparable Important points - 
+1)Comparable is used for default sorting order while Comparator is used for customized sorting order. Comparable interface is having the method compareTo(), while Comparator interface is having the method compare().
+2)Comparable is meant for objects with natural ordering, which means the object itself must know how it is to be ordered, for example, Roll Numbers of students. In contrast, the Comparator interface sorting is done through a separate class.
+3)Logically, Comparable interface compares “this” reference with the object specified, and Comparator in Java compares two different class objects provided.
+4)If any class implements Comparable interface in Java, then a collection of that object, either List or Array, can be sorted automatically by using Collections.sort() or Arrays.sort() method, and objects will be sorted based on their natural order defined by the compareTo method.
+5)A basic differentiating feature is that using Comparable, we can use only one comparison. In contrast, we can write more than one custom comparator as we want for a given type, all using different interpretations of what sorting means.
+6)According to the definition of a functional interface, a functional interface is an interface that contains only one abstract method. Although Comparator<T> has two abstract methods (the equals method is an abstract method overriding one of the public methods of java.lang.Object, but this doesn’t count as an abstract method), it is considered a functional interface. A functional interface is an interface that has just one abstract 
+method (aside from the methods of Object).
+7)When I look at Comparable, it has one abstract method and does not have the FunctionalInterface annotation. Is it a functional interface? Yes, from the definition.
+
+JDK- For making java programs, we need some tools that are provided by JDK (Java Development Kit). JDK is the package that contains various tools, Compiler, Java Runtime Environment, etc.
+JRE -  To execute the java program we need an environment. (Java Runtime Environment) JRE contains a library of Java classes +  JVM. What are JAVA Classes?  It contains some predefined methods that help Java programs to use that feature, build and execute. For example - there is a system class in java that contains the print-stream method, and with the help of this, we can print something on the console.
+JVM - (Java Virtual Machine) JVM  is a part of JRE that executes the Java program at the end.  Actually, it is part of JRE, but it is software that converts bytecode into machine-executable code to execute on hardware.
+Summary, JDK = (JRE) + Development tools, JRE = (JVM) + Libraries to execute the application, JVM = Runtime environment to execute Java byte code.
+
+To not allow serialization of attributes of a class in Java, the attribute can be declared along with the usage of transient keyword. Use of transient has no impact on transient with static & transient with final.
+
+Marker interfaces, also known as tagging interfaces are those interfaces that have no methods and constants defined in them.
+
+Cloneable interface in Java is a marker interface that is used to indicate that a class can be cloned.
+
+Object Cloning - It is the process of creating an exact copy of any object. In order to support this, a java class has to implement the Cloneable interface of java.lang package and override the clone() method provided by the Object class the syntax of which is:
+protected Object clone() throws CloneNotSupportedException{
+ return (Object)super.clone();
+}
+In case the Cloneable interface is not implemented and just the method is overridden, it results in CloneNotSupportedException in Java.
+
+How does an exception propagate in the code - 
+When an exception occurs, first it searches to locate the matching catch block. In case, the matching catch block is located, then that block would be executed. Else, the exception propagates through the method call stack and goes into the caller method where the process of matching the catch block is performed. This propagation happens until the matching catch block is found. If the match is not found, then the program gets terminated in the main method.
+
+Difference between Errors and exceptions - Errors and exceptions represent different types of problems that can occur during program execution. Errors are usually caused by serious problems that cannot be recovered from, while exceptions are used to handle recoverable errors within a program.
+
+Exceptions are runtime errors. Suppose we are making an android application with java. And it all works fine but there is an exceptional case when the application tries to get the file from storage and the file doesn’t exist (This is the case of exception in java). And if this case is not handled properly then the application will crash. This will be a bad experience for users.  This is the type of error that cannot be controlled by the programmer. But programmers can take some steps to avoid this so that the application won’t crash.
+
+The only case where finally block is not executed is when it encounters ‘System.exit()’ method anywhere in try/catch block.
+
+Checked exceptions are the exceptions that are checked at compile time. If some code within a method throws a checked exception, then the method must either handle the exception or it must specify the exception using the throws keyword.Unchecked exceptions are runtime exceptions that are not required to be caught or declared in a throws clause. These exceptions are usually caused by programming errors, such as attempting to access an index out of bounds in an array or attempting to divide by zero.
+
+The ‘throw’ keyword is used to manually throw the exception to the calling method.
+And the ‘throws’ keyword is used in the function definition to inform the calling method that this method throws the exception. So if you are calling, then you have to handle the exception.
+
+We can call a constructor of a class inside another constructor, the concept can be termed as constructor chaining and to achieve Constructor Chaining within the same class we use this() keyword and to achieve Constructor Chaining to other class use super() keyword. we cannot use this() and super() keywords in the same block.
+
+
+The following are major differences between static nested classes and inner classes(non-static nested classes). 
+A static nested class may be instantiated without instantiating its outer class.
+Inner classes can access both static and non-static members of the outer class. A static class can access only the static members of the outer class.
+https://www.geeksforgeeks.org/static-class-in-java/
+
+Serialization in Java allows us to convert an Object to stream that we can send over the network or save it as file or store in DB for later usage. Deserialization is the process of converting Object stream to actual Java Object to be used in our program. 
+
+Synchronized Block - Synchronized block can be used to perform synchronization on any specific resource of the method. Synchronized block is used to lock an object for any shared resource. Suppose we have 50 lines of code in our method, but we want to synchronize only 5 lines, in such cases, we can use synchronized block.
+Syntax : 
+synchronized (object reference expression) {     
+  //code block     
+}  
+
+Inter-thread Communication - 
+It is a mechanism in which a thread releases the lock and enter into the paused state and another thread acquires the lock and continue to execute. It is implemented by following methods of Object class: 
+1.wait() :- If any thread calls the wait() method, it causes the current thread to release the lock and wait until another thread invokes the notify() or notifyAll() method for this object, or a specified amount of time has elapsed.
+2.notify() : This method is used to wake up a single thread and releases the object lock
+3.notifyAll () : This method is used to wake up all threads that are in waiting state.
+NOTE: To call wait(), notify() or notifyAll() method on any object, thread should own the lock of that object i.e. the thread should be inside synchronized area.
+
+We can define and implement a thread in java using two ways - 
+1:Extending the Thread class
+2:Implementing the Runnable interface
+
+There are a total of 3 different types of priority available in Java. 
+MIN_PRIORITY: It has an integer value assigned with 1.
+MAX_PRIORITY: It has an integer value assigned with 10.
+NORM_PRIORITY: It has an integer value assigned with 5.
+In Java, Thread with MAX_PRIORITY gets the first chance to execute. But the default priority for any thread is NORM_PRIORITY assigned by JVM. 
+
+Daemon thread in Java is a service provider thread that provides services to the user thread. There are many java daemon threads running automatically e.g. gc, finalizer etc. To put it simply, daemon threads serve user threads by handling background tasks and have no role other than supporting the main execution.
+
+In java multithreading, the main() threads are always non-daemon threads. And there is no way we can change the nature of the non-daemon thread to the daemon thread.
+
+Singleton Design Pattern
+1-Eager
+2-Lazy
+3-Synchronized
+4-Double checked locking
+5-enum
+
+The Builder pattern design pattern is a creational design pattern that lets you construct complex objects step by step. Ex-Phone, PhoneBuilder(refer eclipse)
+
+The factory design pattern is used when we have a superclass with multiple sub-classes and based on input, we need to return one of the sub-class. Ex- FactoryOperatingSystem, OperatingSystem(refer eclipse)
+
+
+
+Java-8 Important points->
+
+Lambda expression - Lambda expression is a type of function without a name. It is beneficial in iterating, filtering, and extracting data from a collection. It can only be applied to the single abstract method of Functional Interface. It will infer the return type, type, and several arguments from the signature of the abstract method of functional interface.
+Functional Interfaces - Single abstract method interface.
+[TO:DO] Method References - Method reference is a compact way of referring to a method of functional interface. It is used to refer to a method without invoking it. :: (double colon) is used for describing the method reference. The syntax is class::methodName.For e.g. Integer::parseInt(str) 
+Default method - It provides an implementation of methods within interfaces enabling 'Interface evolution' facilities.
+Stream API - Abstract layer that provides pipeline processing of the data.A Stream, which represents a sequence of data objects & series of operations on that data is a data pipeline, Streams does not hold any data permanently.
+Date Time API - New improved joda-time inspired APIs to overcome the drawbacks in previous versions
+Optional - Optional is a container type which may or may not contain value i.e. zero(null) or one(not-null) value. It is part of java.util package. There are pre-defined methods like isPresent(), which returns true if the value is present or else false and the method get(), which will return the value if it is present.It encapsulates optional values, i.e., null or not-null values, which helps in avoiding null checks, which results in better, readable, and robust code. It acts as a wrapper around the object and returns an object instead of a value, which can be used to avoid run-time NullPointerExceptions.
+
+When working with Optional remember, of should be used when you are certain that the value is non-null, while ofNullable is suitable for scenarios where the value can be either non-null or null.
+
+Java pre-defined functional interfaces -
+Some of the famous pre-defined functional interfaces from previous Java versions are Runnable, Comparator, and Comparable. While Java 8 introduces functional interfaces like Supplier, Consumer, Predicate, etc. 
+Runnable: A runnable interface in Java is an interface whose instances can run as a Thread
+Comparator: use to sort different objects in a user-defined order
+Comparable: use to sort objects in the natural sort order
+
+categories of pre-defined function interfaces -
+Function: To transform arguments in returnable value. (This is a functional interface whose functional method is : R apply(T t); where R is the type of the result of the function.)
+Predicate: To perform a test and return a Boolean value.(This is a functional interface whose functional method is :  boolean test(T t);)
+Consumer: Accept arguments but do not return any values. (This is a functional interface whose functional method is : void accept(T t);)
+Supplier: Do not accept any arguments but return a value. 
+
+Common ways to use the Lambda expression -
+Assignment to a functional Interface —> Predicate<String> stringPredicate = s -> s.isEmpty();
+Can be passed as a parameter that has a functional type —> stream.filter(s -> s.isEmpty())
+Returning it from a function —> return s -> s.isEmpty()
+
+Components of the stream are -
+A data source
+Set of Intermediate Operations to process the data source
+Single Terminal Operation that produces the result
+
+Intermediate and Terminal operations -
+Intermediate Operations:
+Process the stream elements.
+Typically transforms a stream into another stream.
+Are lazy, i.e., not executed till a terminal operation is invoked.
+Does internal iteration of all source elements.
+Any number of operations can be chained in the processing pipeline.
+Operations are applied as per the defined order.
+Intermediate operations are mostly lambda functions.
+Terminal Operations:
+Kick-starts the Stream pipeline.
+used to collect the processed Stream data.
+Eg.int count = Stream.of(1, 2, 3, 4, 5)
+.filter(i -> i <4) // Intermediate Operation filter
+.count(); // Terminal Operation count
+
+Examples of Intermediate Operations are -
+Filter(Predicate<T>) - Allows selective processing of Stream elements. It returns elements that are satisfying the supplied condition by the predicate.
+map(Funtion<T, R>) - Returns a new Stream, transforming each of the elements by applying the supplied mapper function.
+
+stateful intermediate operation - 
+To complete some of the intermediate operations, some state is to be maintained, and such intermediate operations are called stateful intermediate operations. Examples :
+sorted() - Sorts the input elements and then passes them to the next stage.
+distinct() - It returns a stream consisting of the distinct(different) elements of the passed stream. 
+limit(long maxsize) - Limit the stream size to maxsize.
+skip(long start) - Skip the initial elements till the start.
+
+Terminal operations -
+collect() - Collects single result from all elements of the stream sequence.
+reduce() - Produces a single result from all elements of the stream sequence. 
+count() - Returns the number of elements on the stream.
+min() - Returns the min element from the stream.
+max() - Returns the max element from the stream.
+forEach() - Useful to do something with each of the Stream elements. It accepts a consumer. It is a Iterative operation.
+
+feature of the new Date and Time API in Java 8 -
+Thread-safe 
+Fluent methods for object creation
+Timezone support
+Addresses I18N issue for earlier APIs
+Influenced by popular joda-time package
+
+LocalDate -
+Date with no time component
+Default format - yyyy-MM-dd (2020-02-20)
+LocalDate today = LocalDate.now();  // gives today’s date
+LocalDate aDate = LocalDate.of(2011, 12, 30); //(year, month, date)
+
+LocalTime -
+Time with no date with nanosecond precision
+Default format - hh:mm:ss:zzz (12:06:03.015) nanosecond is optional
+LocalTime now = LocalTime.now();  // gives time now
+LocalTime aTime2 = LocalTime.of(18, 20, 30); // (hours, min, sec)
+
+LocalDateTime -
+Holds both Date and Time
+Default format - yyyy-MM-dd-HH-mm-ss.zzz (2020-02-20T12:06:03.015)
+LocalDateTime timestamp = LocalDateTime.now(); // gives timestamp now
+//(year, month, date, hours, min, sec)
+LocalDateTime dt1 = LocalDateTime.of(2011, 12, 30, 18, 20, 30);
+
+
+
+Spring-Boot Important points->
+
+Spring Boot is nothing but an existing framework with the addition of an embedded HTTP server and annotation configuration which makes it easier to understand and fasten the process of development.
+Below are some key points which spring boot offers but spring doesn’t:
+Starter POM.
+Version Management.
+Auto Configuration.
+Component Scanning.
+Embedded server.
+InMemory DB.
+Actuators
+
+On a high-level spring boot application follow the MVC pattern
+
+@SpringBootApplication – used to denote the main class of a Boot Application. This annotation combines @Configuration, @EnableAutoConfiguration, and @ComponentScan annotations with their default attributes.
+
+@EnableAutoConfiguration – to make Spring Boot look for auto-configuration beans on its classpath and automatically apply them.
+
+Spring Boot application scans all the beans and package declarations when the application initializes. You need to add the @ComponentScan annotation for your class file to scan your components added to your project.
+
+Just like any other Java program, a Spring Boot application must have a main method. This method serves as an entry point, which invokes the SpringApplication#run method to bootstrap the application.
+
+The default port of the tomcat server-id 8080. It can be changed by adding sever.port properties in the application.property file.
+
+We can replace the Embedded Tomcat server with any server by using the Starter dependency in the pom.xml file.
+
+We can disable the default web server in the Spring boot application we can use application.properties to configure the web application type i.e spring.main.web-application-type=none.
+
+You can use exclude attribute of @EnableAutoConfiguration if you want auto-configuration not to apply to any specific class.@EnableAutoConfiguration(exclude={className})
+
+@RestController - It is a combination of @Controller and @ResponseBody, used for creating a restful controller. It converts the response to JSON or XML. It ensures that data returned by each method will be written straight into the response body instead of returning a template.
+
+@Controller - map of the model object to view or template and make it human readable
+
+Profiles - Spring has the provision of Profiles to keep the separate configuration of environments
+
+An actuator is an additional feature of Spring that helps you to monitor and manage your application when you push it to production. These actuators include health, CPU usage, HTTP hits and many more that are automatically applied to your application. To enable the spring actuator feature, we need to add the dependency of “spring-boot-starter-actuator” in pom.xml.
+Actuators provide below pre-defined endpoints to monitor our application Health, Info, Beans, Mappings,env and many more.
+Spring Boot actuator “/Beans” is used to get the list of all the spring beans in your application.
+Spring Boot actuator “/env” returns the list of all the environment properties of running the spring boot application.
+
+enable debugging log in the spring boot application -(2 ways)
+1.We can start the application with --debug switch.
+2.We can set the logging.level.root=debug property in application.property file
+
+The process of injecting dependent bean objects into target bean objects is called dependency injection.
+Setter Injection: The IOC container will inject the dependent bean object into the target bean object by calling the setter method.
+Constructor Injection: The IOC container will inject the dependent bean object into the target bean object by calling the target bean constructor.
+Field Injection: The IOC container will inject the dependent bean object into the target bean object by Reflection API.
+Example of DI - Suppose we have an interface and we have a impl class for that interface we have to make the object of that impl class because it is having some dependent methods to call then we can make the object of that impl class by using DI. If we have more than one impl class then we can use Qualifier.
+https://www.youtube.com/watch?v=U_JYmvwKKqs&list=TLPQMDExMTIwMjOYhqtVlv51Gw&index=2&ab_channel=EngineeringDigest
+
+@Autowired - It is an annotation used for dependency injection. Spring scans for the class/interface with @Component.
+
+IoC Container is a framework for implementing automatic dependency injection. It manages object creation and its life-time and also injects dependencies into the class. Example: ApplicationContext
+
+The @ControllerAdvice and @ExceptionHandler annotations are powerful tools for handling exceptions in Spring Boot. They allow you to specify a method that will be called whenever a specific exception is thrown in your application.
+The @ControllerAdvice annotation is used to define a class that will be called whenever an exception is thrown in your application. This class can contain multiple methods, each of which is annotated with the @ExceptionHandler annotation and is responsible for handling a specific exception.
+
+
+
+Collection Framework Important points->
+
+Arrays have a set size, which means that once we build one, we can't change it to meet our needs. Only homogeneous data type elements can be stored in arrays.
+
+The collection framework's root interface is referred to as the collection.
+Collection are naturally grow-able and can be customized to meet our needs. We can change its size as per our requirement.Both homogeneous and heterogeneous components can be stored in a collection.Any collection class is built on a standard data structure, and so there is ready-made method support for every demand as a performance. These methods can be used directly, and we are not responsible for their implementation. The Collection interface's most significant functions are add(), remove(), clear(), size(), and contains().
+
+Collections: The java.util.package has a utility class called Collections. It defines various utility methods for working with collections, such as sorting and searching. All of the methods are static. 
+
+The entire collection framework hierarchy is made up of four fundamental interfaces: Collection, List, Set, Map, and two specific interfaces for sorting called SortedSet and SortedMap.The collection API has a core set of interfaces like Collection, Set, List, or Map, and all the classes (ArrayList, LinkedList, Vector, and so on) that implement these interfaces have some common set of methods.
+
+The interfaces included in the collection framework are listed below -
+Iterable Interface -  This interface's main purpose is to provide an iterator for the collections. 
+Collection Interface - This interface lays the groundwork for the implementation of collection classes.
+List Interface - We can store all of the objects in an ordered collection. This also allows for the presence of redundant data.
+Queue Interface - FIFO (First In First Out) order
+Deque Interface - Deque, also known as a double-ended queue, is a data structure in which elements can be added and removed from both ends.
+Set Interface - A set is an unordered group of objects in which duplicate values cannot be kept.
+Sorted Set Interface - This interface resembles the set interface in appearance. The only difference is that this interface provides additional methods for maintaining element ordering.
+
+Difference between ArrayList and LinkedList -
+ArrayList - The elements of this class are stored in a dynamic array. Because of the internal implementation, manipulating an ArrayList takes longer. Internally, the array is scanned and the memory bits are shifted whenever we remove an element. This class is more useful when the application requires data storage and access.
+LinkedList -The elements of this class are stored in a doubly-linked list. Because there is no concept of changing memory bits in a doubly-linked list, manipulating it takes less time than manipulating an ArrayList. The reference link is changed after traversing the list. This class is more useful when the application requires data manipulation.
+
+differences between ArrayList and Vector - 
+Vector is synchronized, which means that only one thread can access the code at a time, however, ArrayList is not synchronized, which means that multiple threads can operate on ArrayList at the same time. 
+If the number of elements in an array exceeds its limit, ArrayList increments 50% of the current array size, while vector increments 100%, thereby doubling the current array size.
+
+Differentiate between List and Set in Java -
+The set interface is part of java.util package and extends the Collection interface. It is an unordered collection of objects in which duplicate values cannot be stored.
+List is an ordered collection of objects that allows for the storage of duplicate values. The insertion order is preserved in a list, which enables positional access and element insertion. 
+
+ListIterator is only useful for classes that implement List collections, such as array lists and linked lists. It can iterate in both directions.
+
+We can add null elements in a HashSet but we cannot add null elements in a TreeSet. The reason is that TreeSet uses the compareTo() method for comparing and it throws a NullPointerException when it encounters a null element.
+
+Differentiate between Set and Map in Java - 
+Set - It cannot have values that are repeated. It is not possible to add the same elements to a set. Only the unique value is stored in each class that implements the Set interface.Using the keyset() and entryset() methods, we can quickly iterate the Set items.The Set interface does not keep track of insertion order. Some of its classes, such as LinkedHashSet, however, keep the insertion order. 
+Map - It is possible for different keys to have the same value. The map has a unique key and values that are repeated. It is not possible to iterate across map elements. To iterate the elements, we must convert Map to Set.The Map does not keep track of the insertion sequence. Some Map classes, such as TreeMap and LinkedHashMap, do the same thing.
+
+Internally, HashSet uses HashMap to add entries. The key K in a HashSet is the argument supplied in the add(Object) method. For each value supplied in the add(Object) method, Java assigns a dummy value.
+
+Differentiate between Array and ArrayList in Java - 
+ArrayList is not a fixed-size data structure, but Array is. When creating an ArrayList object, there is no need to provide its size. Even if we set a maximum capacity, we can add more parts afterward.
+Arrays can include both primitive data types and class objects, depending on the array's definition. ArrayList, on the other hand, only accepts object entries and not primitive data types. Note that when we use arraylist.add(1);, the primitive int data type is converted to an Integer object.
+
+Differentiate between HashMap and HashTable - 
+HashMap is a non-synchronized data structure. It is not thread-safe and cannot be shared across many threads without the use of synchronization code, while Hashtable is synchronized. It's thread-safe and can be used by several threads.HashMap supports one null key and numerous null values, whereas Hashtable does not.
+
+HashMap allow null whereas HashTable does not allow null because the objects used as keys must implement the hashCode and equals methods in order to successfully save and retrieve objects from a HashTable. These methods cannot be implemented by null because it is not an object. 
+
+With the help of Collections.unmodifiableList() method, we can easily make an ArrayList read-only.
+
+CopyOnWriteArrayList - It is a thread-safe version of ArrayList.
+
+we need synchronized ArrayList when we have Vectors (which are synchronized) in Java is because Vectors are considered outdated in Java and have been unofficially deprecated. Vector also synchronizes on a per-operation basis, which is almost never done. Most java programmers prefer to use ArrayList since they will almost certainly synchronize the arrayList explicitly if they need to do so.
+
+Differentiate between HashMap and TreeMap - 
+HashMap - Because HashMap does not order on keys, it allows for heterogeneous elements.HashMap does not keep track of any sort of order.When we don't need a sorted key-value pair, we should use the HashMap. 
+TreeMap - Because of the sorting, TreeMap allows homogenous values to be used as a key. The elements are arranged in chronological sequence (ascending). When we need a key-value pair in sorted (ascending) order, we should use the TreeMap.
+
+Differentiate between HashSet and TreeSet -
+HashSet stores the elements in an unordered manner. However, TreeSet stores the elements in a sorted manner.
+
+LinkedHashSet - When the iteration order is needed to be maintained this class is used. When iterating through a HashSet the order is unpredictable, while a LinkedHashSet lets us iterate through the elements in the order in which they were inserted. When cycling through LinkedHashSet using an iterator, the elements will be returned in the order in which they were inserted.
+
+Queue - It is an ordered list of objects with its use limited to inserting elements at the end of the list and deleting elements from the start of the list, (i.e.), it follows the FIFO or the First-In-First-Out principle.
+
+Deque - The Deque is related to the double-ended queue that supports the addition or removal of elements from either end of the data structure. It can either be used as a queue(first-in-first-out/FIFO) or as a stack(last-in-first-out/LIFO). 
+
+
+
+REST API Important points->
+
+REST represents Representational State Transfer
+RESTFUL web services are web services that follows REST architectural concept (stateless client-server architecture).
+Its is an architectural style for developing applications that can be accessed over the network 
+
+REST Resource - 
+Every content in the REST architecture is considered a resource. 
+The resource == object in the object-oriented programming world. 
+Can be represented as text files, HTML pages, images, or any other dynamic data.
+The REST Server provides access to these resources whereas the REST client consumes (accesses and modifies) these resources. Every resource is identified globally by means of a URI
+
+URI - 
+Uniform Resource Identifier is the full form of URI which is used for identifying each resource of the REST architecture. URI is of the format:
+<protocol>://<service-name>/<resource-type>/<resource-id>
+They are of2 types: URN, URL
+
+HTTP Methods- 
+HTTP Methods are also known as HTTP Verbs. They form a major portion of uniform interface restriction followed by the REST that specifies what action has to be followed to get the requested resource. Below are some examples of HTTP Methods:
+GET: This is used for fetching details from the server and is basically a read-only operation.
+POST: This method is used for the creation of new resources on the server.
+PUT: This method is used to update the old/existing resource on the server or to replace the resource.
+DELETE: This method is used to delete the resource on the server.
+PATCH: This is used for modifying the resource on the server.
+OPTIONS: This fetches the list of supported options of resources present on the server.
+The POST, GET, PUT, DELETE corresponds to the create, read, update, delete operations which are most commonly called CRUD Operations.        
+GET, HEAD, OPTIONS are safe and idempotent methods whereas PUT and DELETE methods are only idempotent. POST and PATCH methods are neither safe nor idempotent.(idempotent means in terms of REST API is the space handled by your database. When you hit the same server n number of times with the same request the memory area given to that particular area should not change.)
+
+Imp point : An idempotent HTTP method is a HTTP method that can be called many times without different outcomes.
+
+features of RESTful web services - 
+1.The service is based on the Client-Server model.
+2.The service uses HTTP Protocol for fetching data/resources, query execution, or any other functions.
+3.The medium of communication between the client and server is called “Messaging”.
+4.Resources are accessible to the service by means of URIs.
+5.It follows the statelessness concept where the client request and response are not dependent on others and thereby provides total assurance of getting the required data.(statelessness-As per REST architecture, a RESTful web service should not keep a client state on server. This restriction is called statelessness. It is responsibility of the client to pass its context to server and then server can store this context to process client's further request. for example, session maintained by server is identified by session identifier passed by the client.)
+6.These services also use the concept of caching to minimize the server calls for the same type of repeated requests.
+
+Supports multiple technologies for data transfer such as text, xml, json, image etc.
+No contract defined between server and client, so loosely coupled implementation.
+REST is a lightweight protocol
+REST methods can be tested easily over browser.
+The HTTP protocol and REST web service, both shares the feature of statelessness.
+Any previous communication with the client and server is not maintained and thus the whole process is very much simplified.
+Every method required for communication is identified as an independent method i.e. there are no dependencies to other methods.
+
+
+
+Database Important points->
+
+LIMIT AND OFFSET - 
+The SQL query below says "return only 10 records, start on record 16 (OFFSET 15)":
+$sql = "SELECT * FROM Orders LIMIT 10 OFFSET 15";
+You could also use a shorter syntax to achieve the same result:
+$sql = "SELECT * FROM Orders LIMIT 15, 10";
+Notice that the numbers are reversed when you use a comma.
+
+-- SQL Query to Find Second Highest Salary
+select * from employee 
+order by  salary desc limit 1,1;
+
+-- If multiple employees have the same salary:
+SELECT * FROM employee 
+WHERE salary= (SELECT DISTINCT(salary)
+FROM employee ORDER BY salary DESC LIMIT 1,1);
+
+MySQL GROUP BY Statement -
+The GROUP BY statement groups rows that have the same values into summary rows, like "find the number of customers in each country".
+The GROUP BY statement is often used with aggregate functions (COUNT(), MAX(), MIN(), SUM(), AVG()) to group the result-set by one or more columns.
+The following SQL statement lists the number of customers in each country:
+SELECT COUNT(CustomerID), Country
+FROM Customers
+GROUP BY Country;
+
+SQL joins are used to retrieve data from multiple tables into a meaningful result set. It is performed whenever you need to fetch records from two or more tables. They are used with SELECT statement and join conditions.
+
+Following are the different types of joins used in SQL:
+INNER JOIN
+RIGHT OUTER JOIN
+LEFT OUTER JOIN
+FULL OUTER JOIN
+SELF JOIN
+CROSS JOIN
+
+INNER JOIN
+Inner join returns only those records from the tables that match the specified condition and hides other rows and columns.
+It fetches rows, when there is at least one match of rows between the tables is found.
+INNER JOIN keyword joins the matching records from two tables.
+It is assumed as a default join, so it is optional to use the INNER keyword with the query.
+Syntax : SELECT column_lists FROM table1 INNER JOIN table2 ON join condition1 INNER
+JOIN table3 ON join condition2
+
+RIGHT OUTER JOIN
+The Right join is used to retrieve all rows from the right-hand table and only those rows from the other table that fulfilled the join condition.
+It returns all the rows from the right-hand side table even though there are no matches in the left-hand side table.
+If it finds unmatched records from the left side table, it returns a Null value.
+This join is also known as Right Outer Join.
+Syntax : SELECT colum_lists FROM table1 RIGHT JOIN table2 ON join condition;
+
+LEFT OUTER JOIN
+The Left Join is used to fetch all rows from the left-hand table and common records between the specified tables.
+It returns all the rows from the left-hand side table even though there are no matches on the right-hand side table.
+If it will not find any matching record from the right side table, then it returns null.
+This join can also be called as Left Outer Join.
+Syntax : SELECT colum_lists FROM tablel LEFT JOIN table2 ON join condition;
+
+FULL OUTER JOIN
+The Full Join results from a combination of both left and right join that contains all the records from both tables.
+It fetches rows when there are matching rows in any one of the tables.
+This means it returns all the rows from the left-hand side table and all the rows from the right-hand side tables.
+If a match is not found, it puts NULL value. It is also known as FULL OUTER JOIN.
+Syntax : SELECT * FROM table1 FULL OUTER JOIN table2 ON join condition;
+Every row form the right and left tables will be there and based on the condition the matching rows will be in front of each other.
+
+Remember Full outer join syntax is not supported in Mysql.
+To get the result same as full outer join in mysql you need to do union on left outer join result and right outer join result.
+Syntax :
+select * from codedecode.employee table emp left outer join codedecode.dept_table dept on emp.dept_id = dept.id
+union
+select * from codedecode.employee table emp right outer join codedecode.dept_table dept on emp.dept id = dept.id
+
+SELF JOIN
+A SELF JOIN is used to join a table with itself.
+E.G. - Fetch all employees belonging to same department.
+This join can be performed using table aliases, which allow us to avoid repeating the same table name in a single sentence.
+It will throw an error if we use the same table name more than once in a single query without using table aliases.
+A SELF JOIN is required when we want to combine data with other data in the same table itself. It is often very useful to convert a hierarchical structure to flat structure.
+Syntax : SELECT column lists FROM table AS T1, table AS T2 WHERE join conditions;
+
+CROSS JOIN
+If we use the cross join to combine two different tables, then we will get the Cartesian product of the sets of rows from the joined table.
+When each row of the first table is combined with each row from the second table, it is known as Cartesian join or cross join.
+After performing the cross join operation, the total number of rows present in the final table will be equal to the product of the number of rows present in table 1 and the number of rows present in table 2.
+Syntax : SELECT * FROM TableName1 CROSS JOIN TableName2.
+Syntax : SELECT * FROM TableNamel, TableName2.
+
+
+
+
