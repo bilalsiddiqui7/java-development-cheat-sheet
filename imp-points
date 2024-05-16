@@ -451,11 +451,12 @@ CROSS JOIN
 
 INNER JOIN
 Inner join returns only those records from the tables that match the specified condition and hides other rows and columns.
-It fetches rows, when there is at least one match of rows between the tables is found.
+It fetches rows, when there is at least one match of rows is found between the tables.
 INNER JOIN keyword joins the matching records from two tables.
 It is assumed as a default join, so it is optional to use the INNER keyword with the query.
 Syntax : SELECT column_lists FROM table1 INNER JOIN table2 ON join condition1 INNER
 JOIN table3 ON join condition2
+Ex : SELECT * FROM trades INNER JOIN users ON trades.user_id = users.user_id;
 
 RIGHT OUTER JOIN
 The Right join is used to retrieve all rows from the right-hand table and only those rows from the other table that fulfilled the join condition.
@@ -501,6 +502,7 @@ After performing the cross join operation, the total number of rows present in t
 Syntax : SELECT * FROM TableName1 CROSS JOIN TableName2.
 Syntax : SELECT * FROM TableNamel, TableName2.
 
+https://datalemur.com/sql-tutorial/sql-joins-inner-outer-left-right
 
 
 
