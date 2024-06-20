@@ -23,6 +23,13 @@ Imp point : We cannot change the order of try catch and finnally we can just use
 
 Imp point : Finally block will be executed even if either try or catch blocks are returning the control.
 
+The == operator is used to compare references (for objects) or primitive values (for primitive data types).
+Primitive Data Types: For primitives, == compares the actual values. 
+Objects: For objects, == compares the memory addresses (references) to see if they point to the same object.
+The equals method is used to compare the actual content or state of two objects for logical equality.
+Default Implementation: The default implementation of equals in the Object class compares memory addresses (just like ==).
+Overridden equals: Classes like String, Integer, and other wrapper classes override equals to compare values.
+
 Anonymous Inner Class - It is a class which doesnt have a name. You just have to create an object and just before the semicolon provide the implementation.  Same way we can use Anonymous class with interface which allows us to create the object of the interface. Note, you cannot reuse this class.
 
 Shallow copy - The shallow copy only creates a new reference and points to the same object. if we change the values in shallow copy then they affect the other reference as well.
@@ -62,6 +69,10 @@ Summary, JDK = (JRE) + Development tools, JRE = (JVM) + Libraries to execute the
 To not allow serialization of attributes of a class in Java, the attribute can be declared along with the usage of transient keyword. Use of transient has no impact on transient with static & transient with final.
 
 Marker interfaces, also known as tagging interfaces are those interfaces that have no methods and constants defined in them.
+Q-Without having any methods how the objects will get the ability in marker interface ? 
+A-Bc JVM is responsible to provide the required ability, it is because to reduce the complexity of Java. It is also possible to create your own marker interface but customization of JVM is required.
+
+Serializable interface is also a marker interface by implementing Serializable our objects can be saved to the file or can be accessed across a network.
 
 Cloneable interface in Java is a marker interface that is used to indicate that a class can be cloned.
 
@@ -80,7 +91,7 @@ Exceptions are runtime errors. Suppose we are making an android application with
 
 The only case where finally block is not executed is when it encounters ‘System.exit()’ method anywhere in try/catch block.
 
-Checked exceptions are the exceptions that are checked at compile time. If some code within a method throws a checked exception, then the method must either handle the exception or it must specify the exception using the throws keyword.Unchecked exceptions are runtime exceptions that are not required to be caught or declared in a throws clause. These exceptions are usually caused by programming errors, such as attempting to access an index out of bounds in an array or attempting to divide by zero.
+Checked exceptions are the exceptions that are checked at compile time. If some code within a method throws a checked exception, then the method must either handle the exception or it must specify the exception using the throws keyword. Unchecked exceptions are runtime exceptions that are not required to be caught or declared in a throws clause. These exceptions are usually caused by programming errors, such as attempting to access an index out of bounds in an array or attempting to divide by zero.
 
 The ‘throw’ keyword is used to manually throw the exception to the calling method.
 And the ‘throws’ keyword is used in the function definition to inform the calling method that this method throws the exception. So if you are calling, then you have to handle the exception.
@@ -139,7 +150,7 @@ Java-8 Important points->
 
 Lambda expression - Lambda expression is a type of function without a name. It is beneficial in iterating, filtering, and extracting data from a collection. It can only be applied to the single abstract method of Functional Interface. It will infer the return type, type, and several arguments from the signature of the abstract method of functional interface.
 Functional Interfaces - Single abstract method interface.
-[TO:DO] Method References - Method reference is a compact way of referring to a method of functional interface. It is used to refer to a method without invoking it. :: (double colon) is used for describing the method reference. The syntax is class::methodName.For e.g. Integer::parseInt(str) 
+Method References - Method reference allow us to refer to a method without invoking it, making our code more cleaner and readable. they can be used in the place of a lambda expression when the lambda expression only calls an existing method.
 Default method - It provides an implementation of methods within interfaces enabling 'Interface evolution' facilities.
 Stream API - Abstract layer that provides pipeline processing of the data.A Stream, which represents a sequence of data objects & series of operations on that data is a data pipeline, Streams does not hold any data permanently.
 Date Time API - New improved joda-time inspired APIs to overcome the drawbacks in previous versions
@@ -154,10 +165,10 @@ Comparator: use to sort different objects in a user-defined order
 Comparable: use to sort objects in the natural sort order
 
 categories of pre-defined function interfaces -
-Function: To transform arguments in returnable value. (This is a functional interface whose functional method is : R apply(T t); where R is the type of the result of the function.)
-Predicate: To perform a test and return a Boolean value.(This is a functional interface whose functional method is :  boolean test(T t);)
-Consumer: Accept arguments but do not return any values. (This is a functional interface whose functional method is : void accept(T t);)
-Supplier: Do not accept any arguments but return a value. 
+Function: To transform arguments in returnable value. (This is a functional interface whose functional method is : R apply(T t); where R is the type of result of the function.) Ex- map()
+Predicate: To perform a test and return a Boolean value.(This is a functional interface whose functional method is :  boolean test(T t);) Ex= used in filter()
+Consumer: Accept arguments but do not return any values. (This is a functional interface whose functional method is : void accept(T t);) Ex- used in forEach()
+Supplier: Do not accept any arguments but return a value. Ex- used in method orElseGet()
 
 Common ways to use the Lambda expression -
 Assignment to a functional Interface —> Predicate<String> stringPredicate = s -> s.isEmpty();
@@ -182,7 +193,7 @@ Terminal Operations:
 Kick-starts the Stream pipeline.
 used to collect the processed Stream data.
 Eg.int count = Stream.of(1, 2, 3, 4, 5)
-.filter(i -> i <4) // Intermediate Operation filter
+.filter(i -> i < 4) // Intermediate Operation filter
 .count(); // Terminal Operation count
 
 Examples of Intermediate Operations are -
@@ -340,7 +351,7 @@ ArrayList is not a fixed-size data structure, but Array is. When creating an Arr
 Arrays can include both primitive data types and class objects, depending on the array's definition. ArrayList, on the other hand, only accepts object entries and not primitive data types. Note that when we use arraylist.add(1);, the primitive int data type is converted to an Integer object.
 
 Differentiate between HashMap and HashTable - 
-HashMap is a non-synchronized data structure. It is not thread-safe and cannot be shared across many threads without the use of synchronization code, while Hashtable is synchronized. It's thread-safe and can be used by several threads.HashMap supports one null key and numerous null values, whereas Hashtable does not.
+HashMap is a non-synchronized data structure. It is not thread-safe and cannot be shared across many threads without the use of synchronization code, while Hashtable is synchronized. It's thread-safe and can be used by several threads. HashMap supports one null key and numerous null values, whereas Hashtable does not support any null key or null value.
 
 HashMap allow null whereas HashTable does not allow null because the objects used as keys must implement the hashCode and equals methods in order to successfully save and retrieve objects from a HashTable. These methods cannot be implemented by null because it is not an object. 
 
@@ -351,13 +362,13 @@ CopyOnWriteArrayList - It is a thread-safe version of ArrayList.
 we need synchronized ArrayList when we have Vectors (which are synchronized) in Java is because Vectors are considered outdated in Java and have been unofficially deprecated. Vector also synchronizes on a per-operation basis, which is almost never done. Most java programmers prefer to use ArrayList since they will almost certainly synchronize the arrayList explicitly if they need to do so.
 
 Differentiate between HashMap and TreeMap - 
-HashMap - Because HashMap does not order on keys, it allows for heterogeneous elements.HashMap does not keep track of any sort of order.When we don't need a sorted key-value pair, we should use the HashMap. 
+HashMap - Because HashMap does not order on keys, it allows for heterogeneous elements. HashMap does not keep track of any sort of order. When we don't need a sorted key-value pair, we should use the HashMap. 
 TreeMap - Because of the sorting, TreeMap allows homogenous values to be used as a key. The elements are arranged in chronological sequence (ascending). When we need a key-value pair in sorted (ascending) order, we should use the TreeMap.
 
 Differentiate between HashSet and TreeSet -
 HashSet stores the elements in an unordered manner. However, TreeSet stores the elements in a sorted manner.
 
-LinkedHashSet - When the iteration order is needed to be maintained this class is used. When iterating through a HashSet the order is unpredictable, while a LinkedHashSet lets us iterate through the elements in the order in which they were inserted. When cycling through LinkedHashSet using an iterator, the elements will be returned in the order in which they were inserted.
+LinkedHashSet - When the iteration order is needed to be maintained this class is used. When iterating through a HashMap the order is unpredictable, while a LinkedHashSet lets us iterate through the elements in the order in which they were inserted. When cycling through LinkedHashSet using an iterator, the elements will be returned in the order in which they were inserted.
 
 Queue - It is an ordered list of objects with its use limited to inserting elements at the end of the list and deleting elements from the start of the list, (i.e.), it follows the FIFO or the First-In-First-Out principle.
 
@@ -503,6 +514,36 @@ Syntax : SELECT * FROM TableName1 CROSS JOIN TableName2.
 Syntax : SELECT * FROM TableNamel, TableName2.
 
 https://datalemur.com/sql-tutorial/sql-joins-inner-outer-left-right
+
+Spring data JPA mappings->
+
+Unidirectional Relationship: In a unidirectional relationship, only one side of the association has a reference to the other side. This means that navigation from one entity to another is only possible from one side of the relationship. In JPA, unidirectional relationships are typically defined using annotations like @OneToOne, @OneToMany, @ManyToOne, or @ManyToMany without the use of mappedBy.
+Bidirectional Relationship: In a bidirectional relationship, both sides of the association have references to each other. This means that navigation is possible from both sides of the relationship. In JPA, bidirectional relationships are established using the mappedBy attribute to indicate which side of the relationship is responsible for managing the association.
+
+One-to-One Relationship:
+In a one-to-one relationship, one record in one table is associated with only one record in another table.
+One-to-Many Relationship:
+In a one-to-many relationship, one record in one table can be associated with multiple records in another table.
+Many-To-One Relationship
+In a many-to-one relationship, multiple records in one table can be associated with a single record in another table.
+Many-to-Many Relationship:
+In a many-to-many relationship, multiple records in one table can be associated with multiple records in another table. 
+
+JoinColumn
+The @JoinColumn annotation in JPA is used to specify the mapping of a foreign key column in a database table. It is typically used in association mappings to define the foreign key column that links the source entity (the owning side) to the target entity (the inverse side) in a relationship.
+Example, in the context of a @ManyToOne or @OneToOne association, the @JoinColumn annotation specifies the name of the foreign key column in the source entity's table that references the primary key column of the target entity's table.
+
+mappedBy:
+mappedBy is used to establish a bidirectional relationship between two entities. It indicates that the entity in this side of the relationship is not responsible for managing the relationship. Instead, the relationship is mapped by the other entity.
+In a bidirectional relationship, one entity (the owning side) maintains the foreign key, and the other entity (the inverse side) uses mappedBy to refer to the owning side's field that manages the relationship.
+Example, in the OneToOne, OneToMany, and ManyToMany mappings mappedBy is used to establish the bidirectional relationship.
+
+JoinTable:
+@JoinTable is used to define the association table (also known as a join table or intermediary table) for a many-to-many relationship. This table is used to store the relationship between the two entities involved in the many-to-many relationship.
+name: Specifies the name of the association table.
+In a @JoinTable annotation, joinColumns and inverseJoinColumns are used to specify the columns that represent the foreign key relationships between the associated entities.
+joinColumns: Specifies the foreign key columns of the join table that reference the primary table of the owning entity (the entity where the @JoinTable annotation is defined).
+inverseJoinColumns: Specifies the foreign key columns of the join table that reference the primary table of the inverse side of the relationship (the entity that is being joined).
 
 
 
